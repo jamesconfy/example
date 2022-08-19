@@ -1,4 +1,3 @@
-from urllib import response
 from example import db
 import json
 from werkzeug.exceptions import HTTPException
