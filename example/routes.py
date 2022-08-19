@@ -3,13 +3,14 @@ import json
 from werkzeug.exceptions import HTTPException
 from flask import current_app as app, jsonify, request, abort
 from example.models import Users, UserSchema
+import pandas as pd
 
 userOne = UserSchema()
 userMany = UserSchema(many=True)
 
 @app.route('/')
 def home():
-    return 'Trying'
+    return jsonify('ty')
 
 @app.route('/users', methods=['POST', 'GET'])
 def users():
@@ -19,7 +20,6 @@ def users():
 
     if request.method == 'POST':
         if request.is_json:
-            id = request.json.get('id')
             name = request.json.get('name')
             user = Users(name=name)
 
@@ -42,6 +42,17 @@ def user(user_id):
     user = Users.query.get_or_404(user_id)
     return jsonify(userOne.dump(user)), 200
 
+@app.route('/load')
+def load():
+    users = Users.query.all()
+    if not users:
+        df = pd.read_csv('./data.csv')
+        for val in df['name']:
+            user = Users(name=str(val))
+            db.session.add(user)
+            db.session.commit()
+            
+    return jsonify(userMany.dump(users)), 200
 
 @app.errorhandler(HTTPException)
 def handle_exception(e):
