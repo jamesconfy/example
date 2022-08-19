@@ -14,4 +14,6 @@ python app.py
 
 You will be able to view the app on [localhost]("http://localhost/v1")
 
+To load the [data](./data.csv), just go to [localhost/load]("http://localhost/v1/load") and the user data automatically get added to the database, note: this is only possible when the database is empty, if you have already added users to the database, this will not work.
+
 That should get the api up and running. The api uses a mysql database system for data storage (so do not be scared when a sites.db file show up on your system, it is not a bug).
