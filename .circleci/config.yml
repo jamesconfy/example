@@ -40,6 +40,32 @@ jobs:
             . .venv/bin/activate
             make lint
 
+  configure:
+    docker:
+      - image: python:3.7-alpine3.11
+
+    steps:
+      - run:
+          name: Configure AWS Access Key ID
+          command: |
+            aws configure set aws_access_key_id \
+            $AWS_ACCESS_KEY \
+            --profile $PROFILE_NAME
+            echo "Print the value for $AWS_PROD_ACCESS_KEY_ID $AWS_PROD_SECRET_ACCESS_KEY"
+
+      - run:
+          name: Configure AWS Secret Access Key
+          command: |
+            aws configure set aws_secret_access_key \
+            $AWS_SECRET_KEY \
+            --profile $PROFILE_NAME
+
+      - run:
+          name: Configure AWS default region
+          command: |
+            aws configure set region $AWS_DEFAULT_REGION \
+            --profile $PROFILE_NAME
+
   deploy:
     docker:
       - image: python:3.7-alpine3.11
