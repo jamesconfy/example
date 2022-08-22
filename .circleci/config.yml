@@ -82,22 +82,23 @@ jobs:
       - run:
           name: Add Connection To AWS
           command: |
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 908252761198.dkr.ecr.us-east-1.amazonaws.com
+            aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/t5u9y7p6
 
       - run:
           name: Build image
           command: |
+            . .venv/bin/activate
             docker build -t example .
 
       - run:
           name: Tag image
           command: |
-            docker tag example:latest 908252761198.dkr.ecr.us-east-1.amazonaws.com/example:latest
+            docker tag example:latest public.ecr.aws/t5u9y7p6/example:latest
 
       - run:
           name: Push image
           command: |
-            docker push 908252761198.dkr.ecr.us-east-1.amazonaws.com/example:latest
+            docker push public.ecr.aws/t5u9y7p6/example:latest
 
 workflows:
   default:
