@@ -57,3 +57,5 @@ workflows:
   default:
     jobs:
       - build
+      - deploy:
+          requires: [build]
