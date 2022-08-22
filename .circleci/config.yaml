@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - run:
+          name: Just checking
+          command: echo "Hello"
+
+workflows:
+  default:
+    jobs:
+      - build-and-test

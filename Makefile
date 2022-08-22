@@ -1,8 +1,10 @@
 setup:
 	python3 -m venv venv
-	source venv/bin/activate
 
-remove:
+activate:
+	source .venv/bin/activate
+
+deactivate:
 	deactivate
 
 install:

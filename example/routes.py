@@ -1,7 +1,7 @@
 from example import db
 import json
 from werkzeug.exceptions import HTTPException
-from flask import current_app as app, jsonify, request, abort
+from flask import current_app as app, jsonify, redirect, request, abort, url_for
 from example.models import Users, UserSchema
 import pandas as pd
 
@@ -51,8 +51,11 @@ def load():
             user = Users(name=str(val))
             db.session.add(user)
             db.session.commit()
-            
-    return jsonify(userMany.dump(users)), 200
+
+        new_users = Users.query.all()
+        return jsonify(userMany.dump(new_users)), 200
+
+    return redirect(url_for('home'))
 
 @app.errorhandler(HTTPException)
 def handle_exception(e):
