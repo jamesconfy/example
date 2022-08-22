@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: python:3.10.2-stretch
+      - image: python:3.10.2
         auth:
           username: $USERNAME
           password: $TOKEN
