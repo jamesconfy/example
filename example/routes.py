@@ -1,9 +1,9 @@
-from example import db
 import json
+import pandas as pd
 from werkzeug.exceptions import HTTPException
 from flask import current_app as app, jsonify, redirect, request, abort, url_for
 from example.models import Users, UserSchema
-import pandas as pd
+from example import db
 
 userOne = UserSchema()
 userMany = UserSchema(many=True)
@@ -32,7 +32,6 @@ def users():
             }
 
             return jsonify(response), 200
-
         else:
             abort(400, description='Content-Type must be application/json')
 
@@ -58,15 +57,15 @@ def load():
     return redirect(url_for('home'))
 
 @app.errorhandler(HTTPException)
-def handle_exception(e):
+def handle_exception(err):
     """Return JSON instead of HTML for HTTP errors."""
     # start with the correct headers and status code from the error
-    response = e.get_response()
+    response = err.get_response()
     # replace the body with JSON
     response.data = json.dumps({
-        "code": e.code,
-        "name": e.name,
-        "message": e.description
+        "code": err.code,
+        "name": err.name,
+        "message": err.description
     })
     response.content_type = "application/json"
     return response

@@ -34,6 +34,10 @@ jobs:
           command: |
             . .venv/bin/activate
             make install
+      - run:
+          name: Run lint
+          command: |
+            make lint
 
 workflows:
   default:

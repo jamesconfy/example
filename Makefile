@@ -16,5 +16,9 @@ migrations:
 	flask db upgrade
 	flask db stamp head
 
+lint:
+	hadolint --ignore=DL3042 --ignore=DL3013 Dockerfile
+	pylint --disable=R,C,W1203,W1202 run.py
+
 run:
 	gunicorn --bind 0.0.0.0:808 run:app
