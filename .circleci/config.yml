@@ -40,6 +40,19 @@ jobs:
             . .venv/bin/activate
             make lint
 
+  deploy:
+    docker:
+      - image: alpine:latest
+        auth:
+          username: $USERNAME
+          password: $TOKEN
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Add Connection To AWS
+          command: |
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 908252761198.dkr.ecr.us-east-1.amazonaws.com
+
 workflows:
   default:
     jobs:
