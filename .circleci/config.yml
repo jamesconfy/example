@@ -47,8 +47,11 @@ jobs:
           username: $USERNAME
           password: $TOKEN
     working_directory: ~/repo
+
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
       - run:
           name: Install dependencies
           command: |
