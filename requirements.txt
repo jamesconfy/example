@@ -1,4 +1,5 @@
 flask
+flask_migrate
 flask_sqlalchemy
 marshmallow
 python-dotenv
