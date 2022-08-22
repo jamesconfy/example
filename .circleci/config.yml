@@ -46,6 +46,11 @@ jobs:
 
     steps:
       - run:
+          name: Install dependencies
+          command: |
+            pip install awscli
+
+      - run:
           name: Configure AWS Access Key ID
           command: |
             aws configure set aws_access_key_id \
