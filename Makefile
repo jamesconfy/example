@@ -15,4 +15,4 @@ migrations:
 	flask db stamp head
 
 run:
-	python3 run.py
+	gunicorn --bind 0.0.0.0:808 run:app
