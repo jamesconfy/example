@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Run lint
           command: |
-            whereis pylint
+            . .venv/bin/activate
             make lint
 
 workflows:
