@@ -48,6 +48,11 @@ jobs:
           password: $TOKEN
     working_directory: ~/repo
     steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            run apk add --update docker openrc aws
       - run:
           name: Add Connection To AWS
           command: |
