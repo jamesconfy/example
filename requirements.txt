@@ -3,4 +3,4 @@ flask_sqlalchemy
 marshmallow
 python-dotenv
 pymysql
-flask_migrate
+pandas
