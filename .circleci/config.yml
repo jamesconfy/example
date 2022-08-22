@@ -37,6 +37,7 @@ jobs:
       - run:
           name: Run lint
           command: |
+            cd ..
             make lint
 
 workflows:
