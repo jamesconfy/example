@@ -6,4 +6,3 @@ python-dotenv
 pymysql
 pandas
 pylint
-psycopg2
