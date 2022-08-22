@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            run apk add --update docker openrc aws
+            apk add --update docker openrc aws
       - run:
           name: Add Connection To AWS
           command: |
