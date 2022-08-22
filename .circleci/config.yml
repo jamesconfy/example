@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Run lint
           command: |
-            which pylint
+            whereis pylint
             make lint
 
 workflows:
