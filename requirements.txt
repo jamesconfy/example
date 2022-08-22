@@ -4,3 +4,4 @@ marshmallow
 python-dotenv
 pymysql
 pandas
+pylint
