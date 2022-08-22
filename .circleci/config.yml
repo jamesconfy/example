@@ -87,7 +87,7 @@ jobs:
       - run:
           name: Build image
           command: |
-            . .venv/bin/activate
+            # . .venv/bin/activate
             docker build -t example .
 
       - run:
